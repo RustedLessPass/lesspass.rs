@@ -246,30 +246,6 @@ fn print_buffer_hex(buf: &[u8], out: &mut dyn Write) -> Result<(), &'static str>
     Ok(())
 }
 
-fn read_password() -> Result<String, &'static str> {
-    // If the input is passed from Stdin, it fails on my machine,
-    // so we handle this here
-    if std::io::stdin().is_terminal() {
-        rpassword::read_password().map_err(|_| "Unable to read password or entropy.")
-    } else {
-        let stdin = std::io::stdin();
-        let mut input = String::new();
-
-        if stdin.read_line(&mut input).is_err() {
-            return Err("Unable to read password or entropy from standard input.");
-        }
-
-        // Trim string if needed.
-        if input.ends_with('\n') {
-            let new_len = input.len() - (if input.ends_with("\r\n") { 2 } else { 1 });
-
-            input.truncate(new_len);
-        }
-
-        Ok(input)
-    }
-}
-
 fn parse_entropy(entropy: &str) -> Option<Vec<u8>> {
     if (entropy.len() & 1) == 1 {
         return None;

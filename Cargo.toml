@@ -1,14 +1,14 @@
 [package]
-name        = "lesspass"
+name = "lesspass"
 description = "An efficient implementation of the LessPass password generator."
-version     = "0.4.2"
-authors     = ["Grégoire Geis <opensource@gregoirege.is>"]
+version = "0.4.2"
+authors = ["Grégoire Geis <opensource@gregoirege.is>"]
 
 repository = "https://github.com/71/lesspass.rs"
-readme     = "README.md"
-license    = "GPL-3.0-only"
-edition    = "2021"
-rust-version = "1.70"  # MSRV
+readme = "README.md"
+license = "GPL-3.0-only"
+edition = "2021"
+rust-version = "1.70"                            # MSRV
 
 keywords = ["cli", "password", "generator"]
 categories = ["algorithms", "command-line-utilities"]
@@ -23,14 +23,13 @@ path = "src/main.rs"
 required-features = ["default"]
 
 [dependencies]
-bitflags    = "2.4"
-uint        = { version = "0.9", default-features = false }
-pbkdf2      = { version = "0.12", default-features = false, features = ["hmac"] }
-sha2        = { version = "0.10", default-features = false }
+bitflags = "2"
+uint = { version = "0.9", default-features = false }
+pbkdf2 = { version = "0.12", default-features = false, features = ["hmac"] }
+sha2 = { version = "0.10", default-features = false }
 
-clap      = { version = "4.4", optional = true, features = ["derive"] }
-rpassword = { version = "7.3", optional = true }
+clap = { version = "4", optional = true, features = ["derive"] }
 
 [features]
-default = [ "clap", "rpassword", "std" ]
+default = ["clap", "std"]
 std = []
